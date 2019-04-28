@@ -19,7 +19,7 @@ public class Application {
 		ApplicationContext ctx=SpringApplication.run(Application.class, args);
 		EmpDao dao=(EmpDao)ctx.getBean("empDao");
 		System.out.println("Saving Employees...");
-		Previlige p1=new Previlige("Car",120000);
+		/*Previlige p1=new Previlige("Car",120000);
 		Previlige p2=new Previlige("Flat",360000);
 		Previlige p3=new Previlige("Club Membership",600000);
 		Set<Previlige> s1=new HashSet<Previlige>();
@@ -27,15 +27,15 @@ public class Application {
 		Set<Previlige> s2=new HashSet<Previlige>();
 		s2.add(p1);s2.add(p2);
 		Set<Previlige> s3=new HashSet<Previlige>();
-		s3.add(p1);
+		s3.add(p1);*/
 		
-		Emp e1=new Emp("Raman","Manager",99000,s1);
-		Emp e2=new Emp("Manoj","HOD",90000,s2);
-		Emp e3=new Emp("Vipul","Tech Lead",85000,s3);
-		dao.save(e1);
-		dao.save(e2);
-		dao.save(e3);
-		System.out.println("Successfully saved.");
+		//Emp e1=new Emp("Raman","Manager",99000,s1);
+		//Emp e2=new Emp("Manoj","HOD",90000,s2);
+		//Emp e3=new Emp("Vipul","Tech Lead",85000,s3);
+		//dao.save(e1);
+		//dao.save(e2);
+		//dao.save(e3);
+		//System.out.println("Successfully saved.");
 		System.out.println("Fetching Employees...");
 		Iterable<Emp> itr=dao.findAll();
 		for(Emp e : itr)
@@ -49,7 +49,24 @@ public class Application {
 				 System.out.println(p.getName()+"\t"+p.getCost());
 			 
 			}
+		System.out.println("Fetching Previliges...");
+		PreviligeDao pdao=(PreviligeDao)
+				ctx.getBean("previligeDao");
+		
+		Iterable<Previlige> pitr=pdao.findAll();
+		for(Previlige p: pitr)
+			{
 			
+			     System.out.println(p.getName()+"\t"+
+			     p.getCost());
+			     System.out.println("Following Employees avail it:");
+				 Set<Emp> eset=p.getEmployees();
+				 for(Emp e: eset)
+				 System.out.println(e.getName()+"\t"
+				 +e.getJob()+"\t"+e.getSalary());
+			 
+			}
+				
 	}
 
 }

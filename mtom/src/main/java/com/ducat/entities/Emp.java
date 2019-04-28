@@ -3,23 +3,23 @@ package com.ducat.entities;
 import java.util.Set;
 
 import javax.persistence.*;
+
 //Owner entity class
 @Entity
+@Table(name="Emp")
 public class Emp {
 
 	//state
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
-	private String name,job;
-	private int salary;
-	
-	//relation
-	@ManyToMany(cascade= {CascadeType.PERSIST,CascadeType.MERGE},
-			fetch=FetchType.EAGER)
+	int id;
+	String name,job;
+	int salary;
+	//Relation
+	@ManyToMany(cascade= {CascadeType.MERGE,CascadeType.PERSIST},fetch=FetchType.EAGER)
 	@JoinTable(name="Emp_Previlige",
-	joinColumns= {@JoinColumn(name="empId")},
-	inverseJoinColumns= {@JoinColumn(name="previligeId")})
+	joinColumns={@JoinColumn(name="empId")},
+	inverseJoinColumns={@JoinColumn(name="previligeId")})
 	Set<Previlige> previliges;
 	
 	

@@ -12,6 +12,10 @@ public class HeadOfState {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String title,name;
+	//Relation
+	@OneToOne(mappedBy="hos")
+	private Country country;
+	
 	
 	
 	
@@ -41,6 +45,12 @@ public class HeadOfState {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public Country getCountry() {
+		return country;
+	}
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 	
 	

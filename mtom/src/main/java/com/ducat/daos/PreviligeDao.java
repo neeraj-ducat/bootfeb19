@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.ducat.entities.*;
 
 @Repository
-public interface EmpDao extends 
-					JpaRepository<Emp, Integer>{
+public interface PreviligeDao extends 
+				JpaRepository<Previlige, Integer>{
 
 }
